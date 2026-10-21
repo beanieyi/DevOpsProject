@@ -20,7 +20,7 @@ data "aws_ami" "amazon_linux_2023" {
 
 resource "aws_instance" "free_tier_instance" {
   ami           = data.aws_ami.amazon_linux_2023.id
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
 
   tags = {
     Name = "free-tier"
