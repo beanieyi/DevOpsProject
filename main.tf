@@ -2,24 +2,27 @@ provider "aws" {
     region = "us-west-1"
 }
 
-data "aws_ami" "ubuntu" {
+data "aws_ami" "amazon_linux_2023" {
   most_recent = true
+  owners = [ "amazon" ]
 
+  #Found via aws ec2 describe-images --region us-west-1 --image-ids CLI
   filter {
     name = "name"
-    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]
+    values = ["al2023-ami-2023.12.20261016.*-kernel-6.18-x86_64"]
   }
 
-  owners = ["099720109477"] # Canonical
+  filter {
+    name = "free-tier-eligible"
+    values = ["true"]
+  }
 }
 
-resource "aws_instance" "app_server" {
-  ami           = data.aws_ami.ubuntu.id
+resource "aws_instance" "free_tier_instance" {
+  ami           = data.aws_ami.amazon_linux_2023.id
   instance_type = "t2.micro"
 
   tags = {
-    Name = "learn-terraform"
+    Name = "free-tier"
   }
 }
-
-#deploy
