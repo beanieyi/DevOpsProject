@@ -21,3 +21,5 @@ resource "aws_instance" "app_server" {
     Name = "learn-terraform"
   }
 }
+
+#deploy
