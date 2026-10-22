@@ -26,3 +26,13 @@ resource "aws_instance" "free_tier_instance" {
     Name = "free-tier"
   }
 }
+
+
+resource "aws_s3_bucket" "example" {
+  bucket = "test-bucket"
+
+  tags = {
+    Name        = "bucket_1"
+    Environment = "Dev"
+  }
+}
