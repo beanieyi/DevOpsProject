@@ -28,8 +28,8 @@ resource "aws_instance" "free_tier_instance" {
 }
 
 
-resource "aws_s3_bucket" "example" {
-  bucket = "test-bucket"
+resource "aws_s3_bucket" "robin_test_bucket" {
+  bucket = "robin-unique-project-dev-2026"
 
   tags = {
     Name        = "bucket_1"
